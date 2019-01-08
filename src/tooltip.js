@@ -1,6 +1,7 @@
 // @flow
 import React, { Component } from 'react';
 import type { Node } from 'react';
+import Svg, { Circle } from 'react-native-svg';
 import {
   Animated,
   Dimensions,
@@ -481,7 +482,18 @@ class Tooltip extends Component<Props, State> {
           justifyContent: 'center',
         }}
       >
-        {children}
+        {/* {children} */}
+        <Svg height={75} width={75} viewBox="0 0 100 100">
+           <Circle
+            cx="50"
+            cy="50"
+            r={ 18 }
+            fill={ '#fe6389' }
+            stroke={'#fe6389'}
+            strokeWidth={18}
+            strokeOpacity={0.4}
+           />
+          </Svg>
       </View>
     );
 
@@ -533,14 +545,15 @@ class Tooltip extends Component<Props, State> {
                 style={[styles.background, ...extendedStyles.background, { backgroundColor }]}
               />
               <Animated.View
-                style={[styles.tooltip, ...extendedStyles.tooltip, tooltipPlacementStyles]}
+                style={[styles.tooltip, ...extendedStyles.tooltip, tooltipPlacementStyles ,{margin:10}]}
               >
                 <Animated.View style={arrowStyle} />
                 <Animated.View onLayout={this.measureContent} style={contentStyle}>
                   {content}
                 </Animated.View>
               </Animated.View>
-              {this.renderChildInTooltip()}
+              {this.renderChildInTooltip()} 
+              
             </View>
           </TouchableWithoutFeedback>
         </Modal>
